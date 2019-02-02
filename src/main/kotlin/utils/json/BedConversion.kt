@@ -40,7 +40,6 @@ fun convertAllKf(obj: dynamic) : dynamic {
             "var count = 1\n" +
             "for(var j in obj) {\n" +
             "var input = obj[j]\n" +
-            "input['place'] = count++\n" +
             "for(var k in input) {\n" +
             "\n" +
             "var newK = k === 'v' ? 'vl' : 'record'\n" +
@@ -50,6 +49,7 @@ fun convertAllKf(obj: dynamic) : dynamic {
             "}\n" +
             "\n" +
             "}\n" +
+            "input['place'] = count++\n" +
             "obj[j] = input\n" +
             "}")
 
