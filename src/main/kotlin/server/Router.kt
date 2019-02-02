@@ -9,4 +9,6 @@ fun addRoutes(server: dynamic) {
     server.get("/:mode/winstreaks/profile/:uuid", {req, res -> w_profile(req, res)})
     server.get("/:mode/winstreaks/historical/leaderboard", {req, res -> h_lb(req, res)})
     server.get("/:mode/winstreaks/historical/profile/:uuid", {req, res -> h_profile(req, res)})
+
+    server.get("/:mode/farmers/profile/:uuid") {req, res -> kfProfile(req, res) }
 }
