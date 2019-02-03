@@ -2,6 +2,7 @@ package routes
 
 import database.dbList
 import utils.json.convertAllKf
+import kotlin.js.json
 
 fun kfProfile(req: dynamic, res: dynamic) {
     val mode = req.params.mode.toLowerCase()
@@ -33,11 +34,18 @@ fun kfLb(req: dynamic, res: dynamic) {
     else if(by == "vl")
         by = "v"
 
+
     if(mode == "bed" || mode == "bedwars") {
         val db = dbList["FARMERS_BED"]
-        db.ref("b").orderByChild(by).limitToFirst(max).once("value").then {
+        db.ref("b").orderByChild(by).limitToLast(max).once("value").then {
             snapshot -> if(snapshot.exists()) {
-            res.json(convertAllKf(snapshot.`val`()))
+            val json = json()
+
+            js("snapshot.forEach(function(child) {\n" +
+                    "json[child.key] = child.val()\n" +
+                    "})")
+
+            res.json(convertAllKf(json))
         }
         else res.status(404).json(js("{code: 404, message: 'Leaderboard not found.'}"))
         }

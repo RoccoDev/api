@@ -37,7 +37,7 @@ fun convertAll(obj: dynamic) : dynamic {
 fun convertAllKf(obj: dynamic) : dynamic {
     js("\n" +
             "\n" +
-            "var count = 1\n" +
+            "var count = Object.keys(obj).length\n" +
             "for(var j in obj) {\n" +
             "var input = obj[j]\n" +
             "for(var k in input) {\n" +
@@ -49,8 +49,9 @@ fun convertAllKf(obj: dynamic) : dynamic {
             "}\n" +
             "\n" +
             "}\n" +
-            "input['place'] = count++\n" +
+            "input['place'] = count--\n" +
             "obj[j] = input\n" +
+            "obj = require('reverse-object-order')(obj)\n" +
             "}")
 
     return obj
