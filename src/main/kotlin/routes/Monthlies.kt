@@ -1,6 +1,8 @@
 package routes
 
 import database.dbList
+import game.CaiLegacyStats
+import game.GntLegacyStats
 import utils.json.convert
 import utils.json.convertAll
 
@@ -18,14 +20,16 @@ fun leaderboard(req: dynamic, res: dynamic) {
 
     var mode = req.params.mode.toLowerCase()
     if(mode == "bedwars") mode = "bed"
+    if(mode == "cai" || mode == "gnt" || mode == "gntm") {
+        res.json(emptyArray<Any>())
+        return
+    }
 
     val ref = transformRef(db, "monthly", mode)
 
     ref.orderByChild(transformKey("place", mode)).startAt(minPlace).endAt(maxPlace).once("value").then { snapshot ->
         res.json(transformResultAll(mode, snapshot.`val`()))
     }.catch {e -> println(e)}
-
-
 }
 
 fun profile(req: dynamic, res: dynamic) {
@@ -36,6 +40,14 @@ fun profile(req: dynamic, res: dynamic) {
     }
     var mode = req.params.mode.toLowerCase()
     if(mode == "bedwars") mode = "bed"
+    if(mode == "gnt" || mode == "gntm") {
+        res.json(GntLegacyStats("GNT monthly stats are no longer supported"))
+        return
+    }
+    if(mode == "cai") {
+        res.json(CaiLegacyStats("CAI monthly stats are no longer supported"))
+        return
+    }
     val ref = transformRef(db, "monthly", mode).child(req.params.uuid)
     ref.once("value").then { snapshot ->
         if(snapshot.exists())

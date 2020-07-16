@@ -1,6 +1,6 @@
 package database
 
-import enum.Modes
+import game.Modes
 
 var dbList : dynamic = null
 

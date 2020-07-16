@@ -1,4 +1,4 @@
-package enum
+package game
 
 enum class Modes(val dbName: String) {
     BEDWARS("bedwarstoolkit-monthlies-bed"),
