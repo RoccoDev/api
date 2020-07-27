@@ -13,7 +13,7 @@ fun kfProfile(req: dynamic, res: dynamic) {
             snapshot -> if(snapshot.exists()) {
             val json = snapshot.`val`()
 
-            res.status(200).json(kotlin.js.json("vl" to json.v, "record" to json.k))
+            res.status(200).json(kotlin.js.json("vl" to json.v, "record" to json.k, "username" to json.n))
         }
         else res.status(404).json(js("{code: 404, message: 'Player not found.'}"))
         }

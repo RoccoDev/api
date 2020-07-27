@@ -42,7 +42,7 @@ fun convertAllKf(obj: dynamic) : dynamic {
             "var input = obj[j]\n" +
             "for(var k in input) {\n" +
             "\n" +
-            "var newK = k === 'v' ? 'vl' : 'record'\n" +
+            "var newK = k === 'v' ? 'vl' : (k === 'n' ? 'username' : 'record')\n" +
             "input[newK] = input[k]\n" +
             "if(k !== newK) {\n" +
             "delete input[k]\n" +
