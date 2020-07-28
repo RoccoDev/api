@@ -9,9 +9,14 @@ enum class Modes(val dbName: String) {
     SKY("monthlies-sky"),
     TIMV("monthlies-timv"),
     DR("monthlies-dr"),
-    GNT("monthlies-gnt"),
-    GNTM("monthlies-gntm"),
+    GNT("monthlies-gnt-old"),
+    GNTM("monthlies-gntm-old"),
     HIDE("monthlies-hide"),
     BP("monthlies-bp"),
-    CAI("monthlies-cai"),
+    CAI("monthlies-cai-old"),
+    SP("monthlies-cai"),
+    GRAV("monthlies-gnt"),
+    DRAW("monthlies-gntm"),
+    BD("monthlies-bd"),
+    CR("monthlies-cr")
 }
